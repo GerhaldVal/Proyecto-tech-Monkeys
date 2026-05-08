@@ -1,8 +1,6 @@
 opcion=0
 #while para usar un bucle en la calculadora so la opcion no es 5 sige 
 while opcion !=5 :
-    numero1=int(input("Ingrese un numero"))
-    numero2=int(input("Ingrese  otro numero"))
     print("""MENU:
         1) SUMAR 
         2) RESTAR
@@ -10,6 +8,8 @@ while opcion !=5 :
         4) DIVIDIR
         5) SALIR""")
     opcion=int(input("Que opcion quieres?"))
+    numero1=int(input("Ingrese un numero"))
+    numero2=int(input("Ingrese  otro numero"))
 #el match es como un swich los casos del menu
     match opcion:
             case 1:
