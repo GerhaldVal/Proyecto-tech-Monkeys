@@ -1,6 +1,6 @@
 
 """Este es un ejemplo de una sentencia secuencial de c++ a python
-Normalmente en c++ para hacer un ejercicio del area de un cuadrado lo hacemos asi
+Normalmente en c++ para hacer un ejercicio del area de un cuadrado lo hacemos asi:
 include <stdio.h>
 int main(){
 float base;
