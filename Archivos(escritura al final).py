@@ -1,2 +1,2 @@
-with open ("prueba_de_archivo_2.txt","a", encoding = "utf-8" ) as archivo: # aqui utilizamos el comando "a" (at end) para escribir archivos al final del texto sin sobreescribir el antiguo archivo
-        archivo.write ("se nos olvido añadir esta linea asi que la añadimos abajo \n")
+with open ("Menu_Creado_con_archivo,write","a", encoding = "utf-8" ) as archivo: # aqui utilizamos el comando "a" (at end) para escribir archivos al final del texto sin sobreescribir el antiguo archivo
+        archivo.write ("########### Opcion 5 ############# \n") # con esto podemos añadir mas opciones al menu en caso de necesitarlo, o cerrarlo definitivamente.
