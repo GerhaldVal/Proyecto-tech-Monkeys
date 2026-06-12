@@ -26,7 +26,8 @@ def mostrar_edificio(m=""):
 def mover():  
     global piso_actual, direccion, destinos
     
-    if direccion == "quieto":
+    # Se añade la validación para evitar error si destinos se vacía repentinamente
+    if direccion == "quieto" and destinos:
         if destinos[0] > piso_actual:
             direccion = "subiendo"
         else:
@@ -82,24 +83,15 @@ while True:
 
     if i == 1:
         print("Pisos disponibles: 1, 2, 3")
-        e = input("A qué pisos quieres ir (ej: 1,2,3): ")
-        pv = []
-        for p in e.split(","):
-            try: 
-                pv.append(int(p.strip()))
-            except: 
-                continue
+        piso_elegido = int(input("¿A qué piso quieres ir?: "))
         
-        pv_validos = [p for p in pv if 1 <= p <= 3]
-        
-        if pv_validos:
-            for p in pv_validos:
-                if p not in destinos and p != piso_actual:
-                    destinos.append(p)
-            while destinos: 
-                mover()
+        if 1 <= piso_elegido <= 3:
+            if piso_elegido not in destinos and piso_elegido != piso_actual:
+                destinos.append(piso_elegido)
+                while destinos: 
+                    mover()
         else:
-            print("No ingresaste ningún piso válido. Solo pisos 1, 2 o 3")
+            print("Piso no disponible. Solo pisos 1, 2 o 3")
             
     elif i == 2:
         with open(r"C:\Users\nic_b\Desktop\Menu2.txt", "r") as menu2:
