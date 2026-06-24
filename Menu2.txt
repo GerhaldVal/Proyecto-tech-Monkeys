@@ -1,0 +1,6 @@
+#######################################
+#### Pisos: 1, 2 y 3               ####
+#### Capacidad: 8 personas máximas ####
+#### Horario: 24/7                 ####
+#### Ascensor totalmente funcional ####
+#######################################

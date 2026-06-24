@@ -1,0 +1,4 @@
+ MENU PRINCIPAL  
+ 1 - Ingresar destinos y mover ascensor 
+ 2 - Ver informacion del edificio
+ 3 - Salir
