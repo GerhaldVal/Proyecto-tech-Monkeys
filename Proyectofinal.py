@@ -6,17 +6,15 @@ class Elevador:
         self.marca = marca
         self.modelo = modelo
         self.piso = piso_inicial
-        self.pisos_disponibles = {1: 500, 2: 300, 3: 100}  # Coordenadas Y
+        self.pisos_disponibles = {1: 500, 2: 300, 3: 100} 
         self.destino = self.pisos_disponibles[piso_inicial]
-        self.cola_pisos = deque()  # Cola para almacenar pisos pendientes
+        self.cola_pisos = deque()
         self.en_movimiento = False
         
     def seleccionar_piso(self, piso):
         """Agrega un piso a la cola de destinos"""
         if 1 <= piso <= 3:
-            # Evitar agregar el piso actual si ya está en la cola o es el destino actual
             if piso != self.piso:
-                # Verificar si el piso ya está en la cola
                 if piso not in self.cola_pisos:
                     self.cola_pisos.append(piso)
                     print(f"Piso {piso} agregado a la cola")
@@ -46,7 +44,6 @@ class Elevador:
         """Se llama cuando el ascensor llega a su destino"""
         self.en_movimiento = False
         print(f"Ascensor llegó al piso {self.piso}")
-        # Procesar siguiente piso en la cola
         self.procesar_cola()
     
     def obtener_posicion_y(self):
@@ -59,24 +56,20 @@ pantalla = pygame.display.set_mode((400, 600))
 pygame.display.set_caption("Simulador de Ascensor")
 reloj = pygame.time.Clock()
 
-# Crear el elevador
 elevador = Elevador("Samsung", "V4", 1)
 
-# Variables para el movimiento
-y_ascensor = 500  # Posición inicial
-velocidad = 3      # Velocidad de movimiento
-umbral_llegada = 5  # Margen para considerar que llegó al destino
+y_ascensor = 500 
+velocidad = 3 
+umbral_llegada = 5
 
 # Bucle principal
 running = True
 while running:
-    # Procesar eventos
     for evento in pygame.event.get():
         if evento.type == pygame.QUIT:
             running = False
         
         if evento.type == pygame.KEYDOWN:
-            # Usar la clase Elevador para seleccionar piso
             if evento.key == pygame.K_1:
                 elevador.seleccionar_piso(1)
             elif evento.key == pygame.K_2:
@@ -84,23 +77,18 @@ while running:
             elif evento.key == pygame.K_3:
                 elevador.seleccionar_piso(3)
     
-    # Lógica de movimiento
     destino_y = elevador.destino
     
-    # Verificar si hay cola y el ascensor no está en movimiento
     if not elevador.en_movimiento and elevador.cola_pisos:
         elevador.procesar_cola()
-        # Actualizar destino después de procesar la cola
         destino_y = elevador.destino
     
-    # Movimiento del ascensor
     if elevador.en_movimiento:
         if y_ascensor < destino_y:
             y_ascensor = min(y_ascensor + velocidad, destino_y)
         elif y_ascensor > destino_y:
             y_ascensor = max(y_ascensor - velocidad, destino_y)
         
-        # Verificar si llegó al destino
         if abs(y_ascensor - destino_y) < umbral_llegada:
             y_ascensor = destino_y
             elevador.llegar_destino()
@@ -109,6 +97,7 @@ while running:
     pantalla.fill((30, 30, 30))
     
     # Dibujar el edificio
+    
     pygame.draw.rect(pantalla, (135, 206, 235), (0, 0, 120, 600))
     pygame.draw.rect(pantalla, (135, 206, 235), (120, 0, 300, 50))
     pygame.draw.rect(pantalla, (135, 206, 235), (260, 0, 400, 600))
@@ -118,6 +107,7 @@ while running:
     pygame.draw.rect(pantalla, (50, 50, 50), (5, 20, 390, 25))
     
     # Ventanas
+    
     pygame.draw.rect(pantalla, (130, 200, 250), (90, 520, 30, 60))
     pygame.draw.line(pantalla,(224, 255, 255),(90,565),(119,520),10)
     pygame.draw.line(pantalla,(224, 255, 255),(90,550),(110,520),5)
@@ -158,7 +148,6 @@ while running:
     pygame.draw.rect(pantalla, (255, 255, 255), (275, 320, 40, 5), 2)
     pygame.draw.rect(pantalla, (255, 255, 255), (275, 375, 40, 5), 2)
     
-  
     pygame.draw.rect(pantalla, (130, 200, 250), (280, 120, 30, 60))
     pygame.draw.line(pantalla,(224, 255, 255),(280,165),(309,120),10)
     pygame.draw.line(pantalla,(224, 255, 255),(280,150),(300,120),5)
@@ -167,7 +156,6 @@ while running:
     pygame.draw.rect(pantalla, (255, 255, 255), (275, 120, 40, 5), 2)
     pygame.draw.rect(pantalla, (255, 255, 255), (275, 175, 40, 5), 2)
     
-    # Dibujar el ascensor
     pygame.draw.rect(pantalla, (255, 0, 0), (150, int(y_ascensor), 100, 100))
     pygame.draw.rect(pantalla, (200, 200, 200), (150, int(y_ascensor), 100, 100), 3)  # Borde
     
@@ -179,8 +167,8 @@ while running:
     if elevador.cola_pisos:
         cola_texto = f"Cola: {list(elevador.cola_pisos)}"
         texto_cola = fuente_pequena.render(cola_texto, True, (0, 255, 0))
-        pantalla.blit(texto_cola, (170, 60))
-  
+        pantalla.blit(texto_cola, (170, 65))
+    
     instrucciones = fuente_pequena.render("Presiona 1, 2 o 3 para llamar al ascensor", True, (200, 200, 0))
     pantalla.blit(instrucciones, (20, 50))
     
